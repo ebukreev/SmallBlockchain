@@ -1,6 +1,9 @@
 package dev.bukreev.smallblockchain
 
-class Block private constructor(
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Block internal constructor(
     val index: Int,
     val previousHash: String,
     val nonce: Int,
