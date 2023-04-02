@@ -5,6 +5,7 @@ import io.ktor.network.sockets.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import mu.KotlinLogging
 import java.util.UUID
 import java.util.concurrent.atomic.AtomicReference
 
@@ -16,6 +17,7 @@ class Node(
     private val currentBlock = AtomicReference<Block>()
     private val blocks = mutableListOf<Block>()
     private val mutex = Mutex()
+    private val logger = KotlinLogging.logger {}
 
     suspend fun start(startGeneration: Boolean) = coroutineScope {
         if (startGeneration) {
@@ -82,7 +84,7 @@ class Node(
                     MessageType.REQUEST_BLOCK -> {
                         val currentBlock = currentBlock.get()
                         if (currentBlock != null) {
-                            println("$nodeId    send block: $currentBlock")
+                            logger.info("$nodeId    send block: $currentBlock")
                             socket.openWriteChannel(autoFlush = true)
                                 .sendMessage(Message(MessageType.RESPONSE_BLOCK, nodeId.toString(), currentBlock))
                         }
@@ -95,7 +97,7 @@ class Node(
     }
 
     private suspend fun processBlock(block: Block, updateCurrent: Boolean, isGenerated: Boolean) {
-        println("$nodeId    ${if (isGenerated) "generate" else "process"} block: $block")
+        logger.info("$nodeId    ${if (isGenerated) "generate" else "process"} block: $block")
 
         if (updateCurrent) currentBlock.set(block)
 
