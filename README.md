@@ -1,6 +1,6 @@
 # SmallBlockchain
 
-[![Tests](https://github.com/ebukreev/SmallBlockchain/actions/workflows/gradle-tests.yml/badge.svg?branch=main)](https://github.com/ebukreev/SmallBlockchain/actions/workflows/gradle-tests.yml)
+[![Tests](https://github.com/ebukreev/SmallBlockchain/actions/workflows/gradle-tests.yml/badge.svg?branch=master)](https://github.com/ebukreev/SmallBlockchain/actions/workflows/gradle-tests.yml)
 
 Just a small blockchain for my university network programming course.
 
