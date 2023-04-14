@@ -13,9 +13,9 @@ class Node(
     val inboundAddress: SocketAddress
 ) {
     private val nodeId = UUID.randomUUID()
-    private val otherNodes = mutableListOf<SocketAddress>()
+    internal val otherNodes = mutableListOf<SocketAddress>()
     private val currentBlock = AtomicReference<Block>()
-    private val blocks = mutableListOf<Block>()
+    internal val blocks = mutableListOf<Block>()
     private val mutex = Mutex()
     private val logger = KotlinLogging.logger {}
 
