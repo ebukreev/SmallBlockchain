@@ -1,9 +1,11 @@
+import info.solidsoft.gradle.pitest.PitestPluginExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.8.10"
     kotlin("plugin.serialization") version "1.8.10"
     application
+    id("info.solidsoft.pitest") version "1.9.0"
 }
 
 group = "dev.bukreev"
@@ -46,4 +48,13 @@ tasks.jar {
     manifest {
         attributes["Main-Class"] = "dev.bukreev.smallblockchain.NodeRunnerKt"
     }
+}
+
+configure<PitestPluginExtension> {
+    junit5PluginVersion.set("1.0.0")
+    avoidCallsTo.set(setOf("kotlin.jvm.internal"))
+    mutators.set(setOf("STRONGER"))
+    targetClasses.set(setOf("dev.bukreev.*"))
+    targetTests.set(setOf("dev.bukreev.*"))
+    threads.set(Runtime.getRuntime().availableProcessors())
 }
