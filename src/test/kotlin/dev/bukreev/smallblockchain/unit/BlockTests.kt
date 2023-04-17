@@ -1,11 +1,11 @@
-package dev.bukreev.smallblockchain
+package dev.bukreev.smallblockchain.unit
 
-import io.ktor.network.sockets.*
+import dev.bukreev.smallblockchain.Block
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class UnitTests {
+class BlockTests {
     @Test
     fun testFirstBlock() {
         val firstBlock = Block.new(null)
@@ -34,24 +34,5 @@ class UnitTests {
         assertEquals(thirdBlock.previousHash, secondBlock.hash)
         assertEquals(thirdBlock.index, 2)
         assertTrue { thirdBlock.hash.endsWith("0000") }
-    }
-
-    @Test
-    fun testNodeNotifying() {
-        val firstNode = Node(InetSocketAddress("127.0.0.1", findFreePort()))
-        val secondNode = Node(InetSocketAddress("127.0.0.1", findFreePort()))
-        val thirdNode = Node(InetSocketAddress("127.0.0.1", findFreePort()))
-
-        firstNode.notifyAboutOtherNodes(listOf(firstNode, secondNode, thirdNode).map { it.inboundAddress })
-
-        assertEquals(firstNode.otherNodes.size, 2)
-        assertEquals(firstNode.otherNodes[0], secondNode.inboundAddress)
-        assertEquals(firstNode.otherNodes[1], thirdNode.inboundAddress)
-    }
-
-    @Test
-    fun testSha256() {
-        val sha = sha256("abc")
-        assertEquals(sha, "BA7816BF8F01CFEA414140DE5DAE2223B00361A396177A9CB410FF61F20015AD")
     }
 }
