@@ -28,6 +28,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
     testImplementation("junit:junit:4.13.1")
     testImplementation("net.jqwik:jqwik-kotlin:1.7.3")
+    testImplementation("com.github.stefanbirkner:system-lambda:1.2.1")
 }
 
 tasks.withType<Test>().configureEach {
