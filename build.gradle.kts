@@ -6,6 +6,7 @@ plugins {
     kotlin("plugin.serialization") version "1.8.10"
     application
     id("info.solidsoft.pitest") version "1.9.0"
+    id("com.code-intelligence.cifuzz") version "1.0.0"
 }
 
 group = "dev.bukreev"
