@@ -35,6 +35,16 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 
+tasks.test {
+    exclude(
+        "**/fuzzing/**",
+        "**/kex/**",
+        "**/load/**",
+        "**/stress/**",
+        "**/system/**",
+    )
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf(
@@ -65,6 +75,12 @@ configure<PitestPluginExtension> {
     avoidCallsTo.set(setOf("kotlin.jvm.internal"))
     mutators.set(setOf("STRONGER"))
     targetClasses.set(setOf("dev.bukreev.*"))
-    targetTests.set(setOf("dev.bukreev.*"))
+    targetTests.set(
+        setOf(
+            "dev.bukreev.smallblockchain.integration.*",
+            "dev.bukreev.smallblockchain.pbt.*",
+            "dev.bukreev.smallblockchain.unit.*",
+        )
+    )
     threads.set(Runtime.getRuntime().availableProcessors())
 }
