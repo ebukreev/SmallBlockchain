@@ -1,5 +1,7 @@
-package dev.bukreev.smallblockchain
+package dev.bukreev.smallblockchain.integration
 
+import dev.bukreev.smallblockchain.Node
+import dev.bukreev.smallblockchain.findFreePort
 import io.ktor.network.sockets.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -8,7 +10,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class IntegrationTests {
+class StartNodeTests {
     @Test
     fun testStartWithoutGeneration() = runBlocking {
         val node = Node(InetSocketAddress("127.0.0.1", findFreePort()))

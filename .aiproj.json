@@ -1,0 +1,13 @@
+{
+    "ProgrammingLanguage": "JavaScript/TypeScript",
+    "ScanAppType": [
+        "JavaScript"
+    ],
+    "Site": "http://localhost",
+    "IsUsePublicAnalysisMethod": true,
+    "UseTaintAnalysis": true,
+    "UsePmAnalysis": true,
+    "SkipGitIgnoreFiles": true,
+    "JavaVersion": "v1_8",
+    "CustomParameters": "--language jvm"
+}
